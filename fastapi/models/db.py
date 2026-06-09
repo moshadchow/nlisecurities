@@ -117,9 +117,9 @@ def create_database_and_table():
         CREATE TABLE IF NOT EXISTS api_market_info (
         id INT AUTO_INCREMENT PRIMARY KEY,
         market VARCHAR(3),
-        trade NUMERIC(9),
-        volume NUMERIC(15),
-        value DECIMAL(9,5),
+        trade NUMERIC(12),
+        volume NUMERIC(18),
+        value DECIMAL(18,2),
         advance int,
         decline int,
         unchange int

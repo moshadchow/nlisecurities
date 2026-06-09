@@ -286,9 +286,9 @@ def save_market_idx_to_db(market,json_data):
             conn.commit()
             print(f"{len(rows_to_insert)} market index rows inserted.")
 
-        # Extract data
-        totals = json_data[0] if market=="CSE" else json_data[4]    # first dict
-        issues = json_data[1] if market=="CSE" else json_data[5]    # second dict
+        # Extract summary dicts by key presence rather than position
+        totals = next((d for d in json_data if "total_trade" in d), {})
+        issues = next((d for d in json_data if "issues_advanced" in d), {})
 
         trade = totals.get("total_trade")
         volume = totals.get("total_volume")
