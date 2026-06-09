@@ -1,0 +1,273 @@
+/* CKEditor content wrapper */
+.ckeditor-content {
+  font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  /* Match card padding & layout feel */
+  word-break: break-word;
+}
+
+/* Reset margins so content breathes nicely inside cards */
+.ckeditor-content > *:first-child {
+  margin-top: 0;
+}
+.ckeditor-content > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings */
+.ckeditor-content h1,
+.ckeditor-content h2,
+.ckeditor-content h3,
+.ckeditor-content h4,
+.ckeditor-content h5,
+.ckeditor-content h6 {
+  font-family: "Space Grotesk", "Open Sans", system-ui, sans-serif;
+  font-weight: 700;
+  color: #0d6efd; /* Bootstrap primary-ish */
+  line-height: 1.3;
+  margin-top: 1.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.ckeditor-content h1 { font-size: 2rem; }
+.ckeditor-content h2 { font-size: 1.75rem; }
+.ckeditor-content h3 { font-size: 1.5rem; }
+.ckeditor-content h4 { font-size: 1.25rem; }
+.ckeditor-content h5 { font-size: 1.1rem; }
+.ckeditor-content h6 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* Paragraphs */
+.ckeditor-content p {
+  margin-bottom: 0.9rem;
+}
+
+/* Links */
+.ckeditor-content a {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+.ckeditor-content a:hover,
+.ckeditor-content a:focus {
+  color: #0a58ca;
+  text-decoration: none;
+}
+
+/* Lists */
+.ckeditor-content ul,
+.ckeditor-content ol {
+  margin: 0 0 1rem 1.5rem;
+  padding-left: 0;
+}
+
+.ckeditor-content li {
+  margin-bottom: 0.3rem;
+}
+
+/* Nested lists */
+.ckeditor-content li ul,
+.ckeditor-content li ol {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+/* Horizontal rule */
+.ckeditor-content hr {
+  border: 0;
+  border-top: 1px solid #e5e5e5;
+  margin: 1.5rem 0;
+}
+
+/* Images */
+.ckeditor-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+  border-radius: 6px;
+}
+
+/* CKEditor image wrappers / figures */
+.ckeditor-content figure {
+  margin: 1.2rem auto;
+  display: block;
+}
+
+.ckeditor-content figure.image,
+.ckeditor-content figure.image img {
+  max-width: 100%;
+}
+
+.ckeditor-content figure.image > img {
+  margin: 0 auto;
+}
+
+.ckeditor-content figure figcaption {
+  font-size: 0.875rem;
+  color: #6c757d;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Image alignment classes from CKEditor */
+.ckeditor-content .image-style-align-left {
+  float: left;
+  margin: 0.3rem 1rem 0.8rem 0;
+  max-width: 50%;
+}
+
+.ckeditor-content .image-style-align-right {
+  float: right;
+  margin: 0.3rem 0 0.8rem 1rem;
+  max-width: 50%;
+}
+
+.ckeditor-content .image-style-align-center,
+.ckeditor-content .image-style-block-align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Clear floated media blocks */
+.ckeditor-content::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* Blockquote */
+.ckeditor-content blockquote {
+  border-left: 4px solid #0d6efd;
+  padding: 0.75rem 1rem;
+  margin: 1.25rem 0;
+  background-color: #f8f9fa;
+  font-style: italic;
+  color: #555;
+}
+
+/* Code & preformatted text */
+.ckeditor-content code,
+.ckeditor-content kbd,
+.ckeditor-content samp {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 0.9em;
+  background: #f1f3f5;
+  padding: 0.1rem 0.25rem;
+  border-radius: 4px;
+}
+
+.ckeditor-content pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 0.9rem;
+  background: #212529;
+  color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.2rem 0;
+}
+
+.ckeditor-content pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+/* Tables */
+.ckeditor-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.95rem;
+}
+
+.ckeditor-content table th,
+.ckeditor-content table td {
+  border: 1px solid #dee2e6;
+  padding: 0.5rem 0.75rem;
+  vertical-align: top;
+}
+
+.ckeditor-content table th {
+  background-color: #f1f3f5;
+  font-weight: 600;
+}
+
+.ckeditor-content table tbody tr:nth-child(even) {
+  background-color: #fafbfc;
+}
+
+/* Alignment helpers from CKEditor */
+.ckeditor-content .text-left {
+  text-align: left;
+}
+.ckeditor-content .text-center {
+  text-align: center;
+}
+.ckeditor-content .text-right {
+  text-align: right;
+}
+.ckeditor-content .text-justify {
+  text-align: justify;
+}
+
+/* Media embeds (YouTube, etc.) */
+.ckeditor-content .media,
+.ckeditor-content .media-embed,
+.ckeditor-content iframe {
+  max-width: 100%;
+}
+
+.ckeditor-content .media-embed,
+.ckeditor-content .ck-media__wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  margin: 1.25rem 0;
+}
+
+.ckeditor-content .media-embed iframe,
+.ckeditor-content .ck-media__wrapper iframe,
+.ckeditor-content .media-embed video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Definition lists */
+.ckeditor-content dl {
+  margin: 0 0 1rem;
+}
+.ckeditor-content dt {
+  font-weight: 600;
+}
+.ckeditor-content dd {
+  margin-left: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* Small text */
+.ckeditor-content small {
+  font-size: 0.85em;
+  color: #6c757d;
+}
+
+/* Responsive tweaks */
+@media (max-width: 767.98px) {
+  .ckeditor-content h1 { font-size: 1.6rem; }
+  .ckeditor-content h2 { font-size: 1.45rem; }
+  .ckeditor-content h3 { font-size: 1.3rem; }
+
+  .ckeditor-content .image-style-align-left,
+  .ckeditor-content .image-style-align-right {
+    float: none;
+    margin: 0.75rem auto;
+    max-width: 100%;
+  }
+}

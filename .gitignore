@@ -1,0 +1,73 @@
+# ───── Python / Django / FastAPI ─────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+venv/
+.venv/
+env/
+*.env
+.env
+.env.*
+!.env.example
+
+# Django
+*.sqlite3
+db.sqlite3
+/media/
+/staticfiles/
+/static/
+local_settings.py
+
+# Migrations (keep structure, ignore compiled cache)
+**/migrations/__pycache__/
+
+# ───── Node / React / Vite ─────
+node_modules/
+nls_frontend/dist/
+nls_frontend/.env
+nls_frontend/.env.*
+!nls_frontend/.env.example
+
+# Vite cache
+nls_frontend/.vite/
+
+# ───── Database files ─────
+nlsDB/
+*.db
+*.sqlite
+
+# ───── Certificates / secrets ─────
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+cse_ca_bundle.pem
+cse_chain_raw.txt
+cse_intermediate_ca.pem
+cse_intermediate_ca.pem
+leaf.pem
+
+# ───── Logs ─────
+*.log
+logs/
+
+# ───── OS / Editor ─────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ───── Misc ─────
+almalinux-information.txt
+nli_run_command.txt
+nlisecurities.conf
