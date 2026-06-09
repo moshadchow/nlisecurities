@@ -24,6 +24,7 @@ db.sqlite3
 /staticfiles/
 /static/
 local_settings.py
+nls_backend/assets/
 
 # Migrations (keep structure, ignore compiled cache)
 **/migrations/__pycache__/
