@@ -1,8 +1,11 @@
+const DJANGO_BASE  = import.meta.env.VITE_API_BASE    ?? '';
+const FASTAPI_BASE = import.meta.env.VITE_FASTAPI_BASE ?? '';
+
 // Fetching Board index data time wise
 export async function fetchMinutesIndex(id) {
   try {
     // ✅ Make sure the path is correct relative to your public folder
-    const response = await fetch(`http://127.0.0.1:8000/minutes_index/${id}`);
+    const response = await fetch(`${DJANGO_BASE}/minutes_index/${id}`);
 
     // ✅Check once and only once
     if (!response.ok) {
@@ -22,7 +25,7 @@ export async function fetchMinutesIndex(id) {
 // Fetching Market index data index wise
 export async function fetchMarketInfo(id) {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/market_info/${id}`);
+    const response = await fetch(`${DJANGO_BASE}/market_info/${id}`);
     
     if (!response.ok) {
       console.error("DSE fetch failed with status:", response.status);
@@ -40,7 +43,7 @@ export async function fetchMarketInfo(id) {
 // Fetching Market index data index wise
 export async function fetchMarketIndex(id) {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/market_index/${id}`);
+    const response = await fetch(`${DJANGO_BASE}/market_index/${id}`);
     
     if (!response.ok) {
       console.error("DSE fetch failed with status:", response.status);
@@ -58,7 +61,7 @@ export async function fetchMarketIndex(id) {
 export async function fetchTickerPrice(id) {
   try {
     // ✅ Make sure the path is correct relative to your public folder
-    const response = await fetch(`http://127.0.0.1:8000/ticker_price/${id}`);
+    const response = await fetch(`${DJANGO_BASE}/ticker_price/${id}`);
 
     // ✅Check once and only once
     if (!response.ok) {
@@ -79,7 +82,7 @@ export async function fetchTickerPrice(id) {
 export async function fetchIPO() {
   try {
     // ✅ Make sure the path is correct relative to your public folder
-    const response = await fetch("http://127.0.0.1:8080/ipo_offer");
+    const response = await fetch("${FASTAPI_BASE}/ipo_offer");
 
     // ✅Check once and only once
     if (!response.ok) {
@@ -99,7 +102,7 @@ export async function fetchIPO() {
 export async function fetchDSENews() {
   try {
     // ✅ Make sure the path is correct relative to your public folder
-    const response = await fetch("http://127.0.0.1:8080/dse_news");
+    const response = await fetch("${FASTAPI_BASE}/dse_news");
 
     // ✅Check once and only once
     if (!response.ok) {
@@ -120,7 +123,7 @@ export async function fetchDSENews() {
 export async function fetchCSENews() {
   try {
     // ✅ Make sure the path is correct relative to your public folder
-    const response = await fetch("http://127.0.0.1:8080/cse_news");
+    const response = await fetch("${FASTAPI_BASE}/cse_news");
 
     // ✅Check once and only once
     if (!response.ok) {
@@ -140,7 +143,7 @@ export async function fetchCSENews() {
 export async function fetchTopSharePrice(id) {
   try {
     // ✅ Make sure the path is correct relative to your public folder
-    const response = await fetch(`http://127.0.0.1:8000/top_share_price_by/${id}`);
+    const response = await fetch(`${DJANGO_BASE}/top_share_price_by/${id}`);
 
     // ✅Check once and only once
     if (!response.ok) {
@@ -161,7 +164,7 @@ export async function fetchTopSharePrice(id) {
 export async function fetchSectorWiseSymbol() {
   try {
     // ✅ Make sure the path is correct relative to your public folder
-    const response = await fetch("http://127.0.0.1:8000/sector_wise_inst");
+    const response = await fetch("${DJANGO_BASE}/sector_wise_inst");
 
     // ✅Check once and only once
     if (!response.ok) {

@@ -1,3 +1,5 @@
+const BASE = import.meta.env.VITE_API_BASE ?? '';
+
 export const getPlainText = (htmlString) => {
   const doc = new DOMParser().parseFromString(htmlString, "text/html");
   return doc.body.textContent || "";
@@ -5,7 +7,7 @@ export const getPlainText = (htmlString) => {
 
 export const getAbout = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8000/about/", {
+    const response = await fetch(`${BASE}/about/`, {
       method: "GET",
     });
     return await response.json();
@@ -19,9 +21,9 @@ export const getAboutImage = async (id) => {
  var url;
   try {
     if (id === null) {
-      url = "http://127.0.0.1:8000/about_image/";
+      url = `${BASE}/about_image/`;
     } else {
-      url = `http://127.0.0.1:8000/about_image/${id}`;
+      url = `${BASE}/about_image/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -35,7 +37,7 @@ export const getAboutImage = async (id) => {
 
 export const getCarousal = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8000/slider/", {
+    const response = await fetch(`${BASE}/slider/`, {
       method: "GET",
     });
     return await response.json();
@@ -49,9 +51,9 @@ export const getServices = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = "http://127.0.0.1:8000/service/";
+      url = `${BASE}/service/`;
     } else {
-      url = `http://127.0.0.1:8000/service/${id}`;
+      url = `${BASE}/service/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -65,7 +67,7 @@ export const getServices = async (id) => {
 
 export const getProducts = async (id) => {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/product/${id}`, {
+    const response = await fetch(`${BASE}/product/${id}`, {
       method: "GET",
     });
     return await response.json();
@@ -79,9 +81,9 @@ export const getFeatures = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = "http://127.0.0.1:8000/feature/";
+      url = `${BASE}/feature/`;
     } else {
-      url = `http://127.0.0.1:8000/feature/${id}`;
+      url = `${BASE}/feature/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -97,9 +99,9 @@ export const getOffers = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = "http://127.0.0.1:8000/offer/";
+      url = `${BASE}/offer/`;
     } else {
-      url = `http://127.0.0.1:8000/offer/${id}`;
+      url = `${BASE}/offer/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -115,9 +117,9 @@ export const getBoardMembers = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = "http://127.0.0.1:8000/board_member/";
+      url = `${BASE}/board_member/`;
     } else {
-      url = `http://127.0.0.1:8000/board_member/${id}`;
+      url = `${BASE}/board_member/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -133,9 +135,9 @@ export const getManComs = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = "http://127.0.0.1:8000/mancom/";
+      url = `${BASE}/mancom/`;
     } else {
-      url = `http://127.0.0.1:8000/mancom/${id}`;
+      url = `${BASE}/mancom/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -149,7 +151,7 @@ export const getManComs = async (id) => {
 
 export const getTeams = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8000/tech/", {
+    const response = await fetch(`${BASE}/tech/`, {
       method: "GET",
     });
     return await response.json();
@@ -163,9 +165,9 @@ export const getEvents = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = "http://127.0.0.1:8000/event/";
+      url = `${BASE}/event/`;
     } else {
-      url = `http://127.0.0.1:8000/event/${id}`;
+      url = `${BASE}/event/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -181,9 +183,9 @@ export const getMarketNews = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = "http://127.0.0.1:8000/market_news/";
+      url = `${BASE}/market_news/`;
     } else {
-      url = `http://127.0.0.1:8000/market_news/${id}`;
+      url = `${BASE}/market_news/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -197,7 +199,7 @@ export const getMarketNews = async (id) => {
 
 export const getClients = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8000/client/", {
+    const response = await fetch(`${BASE}/client/`, {
       method: "GET",
     });
     return await response.json();
@@ -209,7 +211,7 @@ export const getClients = async () => {
 
 export const getFaqs = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8000/faq/", {
+    const response = await fetch(`${BASE}/faq/`, {
       method: "GET",
     });
     return await response.json();
@@ -221,7 +223,7 @@ export const getFaqs = async () => {
 
 export const getPolicy = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8000/privacy-policy/", {
+    const response = await fetch(`${BASE}/privacy-policy/`, {
       method: "GET",
     });
     return await response.json();
@@ -233,7 +235,7 @@ export const getPolicy = async () => {
 
 export const getIPO = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8000/ipo/", {
+    const response = await fetch(`${BASE}/ipo/`, {
       method: "GET",
     });
     return await response.json();
@@ -247,9 +249,9 @@ export const getBranches = async (id) => {
  var url;
   try {
     if (id === null) {
-      url = "http://127.0.0.1:8000/branch/";
+      url = `${BASE}/branch/`;
     } else {
-      url = `http://127.0.0.1:8000/branch/${id}`;
+      url = `${BASE}/branch/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -265,7 +267,7 @@ export const getBranches = async (id) => {
 export const fetchTopSharePrice = async (id)=> {
   try {
     // ✅ Make sure the path is correct relative to your public folder
-    const response = await fetch(`http://127.0.0.1:8000/top_share_price_by/${id}`);
+    const response = await fetch(`${BASE}/top_share_price_by/${id}`);
 
     // ✅Check once and only once
     if (!response.ok) {
@@ -283,7 +285,7 @@ export const fetchTopSharePrice = async (id)=> {
 
 export const getFilesByCategories = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8000/categories/", {
+    const response = await fetch(`${BASE}/categories/`, {
       method: "GET",
     });
     return await response.json();
