@@ -22,17 +22,19 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import time
 
-# cse.com.bd's server omits its GlobalSign GCC R3 intermediate cert from the
-# TLS handshake, so certifi alone cannot build the chain. We bundle the
-# intermediate alongside certifi's Mozilla roots.
+# Both dsebd.org and cse.com.bd omit intermediate certs from their TLS handshakes.
+# We ship pre-built bundles (certifi roots + the missing intermediate) for each.
 _HERE = os.path.dirname(os.path.abspath(__file__))
-CSE_CA_BUNDLE = os.path.join(os.path.dirname(_HERE), "cse_ca_bundle.pem")
+_BASE = os.path.dirname(_HERE)
+DSE_CA_BUNDLE = os.path.join(_BASE, "dse_ca_bundle.pem")
+CSE_CA_BUNDLE = os.path.join(_BASE, "cse_ca_bundle.pem")
 
 session = requests.Session()
 session.verify = CSE_CA_BUNDLE
 
-def get_soup(BASE_URL):
-    response = requests.get(BASE_URL, verify=CSE_CA_BUNDLE)
+def get_soup(BASE_URL, ca_bundle=None):
+    verify = ca_bundle if ca_bundle else DSE_CA_BUNDLE
+    response = requests.get(BASE_URL, verify=verify)
     if response.status_code != 200:
         raise Exception("Failed to fetch DSE website.")
     return BeautifulSoup(response.text, "html.parser")
@@ -131,7 +133,7 @@ def get_minute_index_data_cse():
 
 def get_latest_share_price_cse():
     BASE_URL = "https://www.cse.com.bd/market/current_price"
-    soup = get_soup(BASE_URL)
+    soup = get_soup(BASE_URL, ca_bundle=CSE_CA_BUNDLE)
     return parse_latest_share_price_cse(soup)
 
 def get_cse_news():
@@ -143,5 +145,5 @@ def get_cse_news():
 
 def get_ticker_data_cse():
     BASE_URL = "https://www.cse.com.bd/ticker2.php"
-    soup = get_soup(BASE_URL)
+    soup = get_soup(BASE_URL, ca_bundle=CSE_CA_BUNDLE)
     return parse_ticker_data_cse(soup)
