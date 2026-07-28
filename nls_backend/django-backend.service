@@ -1,0 +1,17 @@
+[Unit]
+Description=NLI Securities Django Backend
+After=network.target mysqld.service
+Wants=mysqld.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/var/www/backend
+Environment="PATH=/var/www/backend/venv/bin"
+ExecStart=/var/www/backend/venv/bin/uvicorn nls_backend.asgi:application --host 192.168.101.238 --port 8000
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF

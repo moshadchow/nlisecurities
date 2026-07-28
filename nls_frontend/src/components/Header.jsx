@@ -61,6 +61,15 @@ function Header() {
             {/* Social + Trade Button */}
             <div className="col-lg-6 text-center text-lg-end mt-2 mt-lg-0">
               <a
+                href="https://bo-registration.xfltrade.com/signup?broker=nls"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-warning btn-sm me-2"
+              >
+                Open a BO Account
+              </a>
+
+              <a
                 href="https://www.facebook.com/nlisecurities"
                 target="_blank"
                 rel="noopener noreferrer"
