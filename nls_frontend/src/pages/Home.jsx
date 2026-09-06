@@ -10,6 +10,7 @@ import { fetchMarketInfo } from "../services/chartService";
 
 import IssueStatus from '../components/IssueStatus';
 import HeroSlider from '../components/HeroSlider';
+import FaqSection from '../components/FaqSection';
 
 
 function Home() {
@@ -233,6 +234,9 @@ function Home() {
         </div>
       </div>
       {/* Events End */}
+      {/* FAQ Section */}
+      <FaqSection />
+      {/* FAQ Section End */}
       {/* Back to Top */}
       <Link
         to="#!"
