@@ -67,3 +67,31 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* DSE/CSE market layout: three paired rows */
+.market-pair-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Tables stretch to fill column height within each row */
+.market-pair-row .table-responsive {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.market-pair-row .table-responsive > .table {
+  flex: 1 1 0%;
+  margin-bottom: 0;
+}
+
+/* IssueStatus cards: force identical sizing */
+.issue-status-row .issue-status-card {
+  flex: 1 1 0%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}

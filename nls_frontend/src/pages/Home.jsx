@@ -125,9 +125,13 @@ function Home() {
           {/* ===== Market Issue Status HERE ===== */}
           <div className="row justify-content-center mb-5">
             {!error && indexData && indexDataCSE ? (
-              <div className="d-flex justify-content-center gap-5 flex-wrap">
-                <IssueStatus title="DSE" indexData={indexData} />
-                <IssueStatus title="CSE" indexData={indexDataCSE} />
+              <div className="d-flex justify-content-center gap-5 flex-wrap issue-status-row">
+                <div className="issue-status-card">
+                  <IssueStatus title="DSE" indexData={indexData} />
+                </div>
+                <div className="issue-status-card">
+                  <IssueStatus title="CSE" indexData={indexDataCSE} />
+                </div>
               </div>
             ) : (
               <div className="text-center p-4">
@@ -135,20 +139,50 @@ function Home() {
               </div>
             )}
           </div>
-          <div className="row g-5">
-            <div className="col-lg-6 d-flex flex-column gap-4">
-              <IndexChart />
-              <DSEIndex />
-              <FetchTopShareBy />
+          <div className="market-pair-row">
+
+            {/* Index Chart Row */}
+            <div className="row g-5">
+              <div className="col-lg-6">
+                <div className="dse-index-chart">
+                  <IndexChart />
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="cse-index-chart">
+                  <IndexChartCSE />
+                </div>
+              </div>
             </div>
-            <div
-              className="col-lg-6 d-flex flex-column gap-4 wow fadeIn"
-              data-wow-delay="0.5s"
-            >
-              <IndexChartCSE />
-              <CSEIndex />
-              <FetchTopShareCSEBy />
+
+            {/* Index Summary Row */}
+            <div className="row g-5">
+              <div className="col-lg-6">
+                <div className="dse-index">
+                  <DSEIndex />
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="cse-index">
+                  <CSEIndex />
+                </div>
+              </div>
             </div>
+
+            {/* Top Share Row */}
+            <div className="row g-5">
+              <div className="col-lg-6">
+                <div className="dse-top-share">
+                  <FetchTopShareBy />
+                </div>
+              </div>
+              <div className="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <div className="cse-top-share">
+                  <FetchTopShareCSEBy />
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
