@@ -72,3 +72,6 @@ Thumbs.db
 almalinux-information.txt
 nli_run_command.txt
 nlisecurities.conf
+
+# Pytest
+.pytest_cache/

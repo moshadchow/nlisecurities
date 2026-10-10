@@ -21,8 +21,8 @@ def save_debt_to_db(json_data):
         # Prepare insert query
         query = """
         INSERT INTO api_debt_prices (
-            sl, inst, ltp, high, low, closep, ycp, change_val, trade_count, value_mn, volume
-        ) VALUES (%(sl)s, %(inst)s, %(ltp)s, %(high)s, %(low)s, %(closep)s, %(ycp)s,
+            sl, symbol, ltp, high, low, closep, ycp, change_val, trade_count, value_mn, volume
+        ) VALUES (%(sl)s, %(symbol)s, %(ltp)s, %(high)s, %(low)s, %(closep)s, %(ycp)s,
                   %(change_val)s, %(trade_count)s, %(value_mn)s, %(volume)s)
         """
 
