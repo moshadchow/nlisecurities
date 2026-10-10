@@ -4,8 +4,7 @@
 
  nls_backend is a Django 5.2.7 REST API that serves content (sliders, services, events, market data) for the NLS
  Securities website. It runs via ASGI (uvicorn) at 192.168.101.238:8000, behind Nginx on the AlmaLinux server at
- 103.244.247.188:2244 (via jump server 103.244.247.59:8449). The Nginx config (nlisecurities.conf) already has /api/,
- /admin/, /ckeditor5/ proxy blocks pointing to this port. Static files go to /var/www/django_static/ and media to
+ 103.244.247.188:2244 (via jump server 103.244.247.59:8449). The Nginx config (nlisecurities.conf) already has /api/,/admin/, /ckeditor5/ proxy blocks pointing to this port. Static files go to /var/www/django_static/ and media to
  /var/www/django_media/.
 
  Pre-deployment fixes required in settings.py:
