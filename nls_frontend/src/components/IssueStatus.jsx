@@ -1,10 +1,10 @@
 const IssueStatus  = ({title,indexData}) =>{
     return (
       <>
-        <div className="text-center">
+        <div className="issue-status-panel text-center">
           <h5 className="text-primary fw-bold mb-2">{title}</h5>
-          <div className="table-responsive d-inline-block">
-            <table className="table table-bordered w-auto text-center mb-0">
+          <div className="table-responsive w-100">
+            <table className="table table-bordered w-100 text-center mb-0 issue-status-table">
               <thead>
                 <tr>
                   <th className="text-success">Advanced ↑</th>

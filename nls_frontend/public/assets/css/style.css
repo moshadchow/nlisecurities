@@ -582,3 +582,78 @@
     font-size: 0.85rem;
   }
 }
+
+/*** Hero Market Row: DSE stats | heading | CSE stats ***/
+.hero-market-row {
+  justify-content: center;
+}
+
+.hero-market-side {
+  display: flex;
+  justify-content: center;
+}
+
+/* Shared panel: both DSE and CSE instances use one class so width/height match */
+.issue-status-panel {
+  width: 100%;
+  max-width: 340px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #0c1f1e;
+  padding: 14px 16px;
+}
+
+.issue-status-panel .table-responsive {
+  overflow-x: visible;
+}
+
+/* Fixed 3-equal-column grid; long values ellipsis instead of resizing cards */
+.issue-status-table {
+  table-layout: fixed;
+}
+
+.issue-status-table th,
+.issue-status-table td {
+  width: 33.3333%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 8px 4px;
+  font-size: 0.95rem;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  background-color: transparent !important;
+}
+
+@media (max-width: 991.98px) {
+  .hero-market-row {
+    row-gap: 1rem;
+  }
+
+  .issue-status-panel {
+    max-width: 420px;
+    min-height: 144px;
+    padding: 12px 14px;
+  }
+
+  .issue-status-table th,
+  .issue-status-table td {
+    font-size: 0.9rem;
+    padding: 7px 4px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-market-side {
+    width: 100%;
+  }
+
+  .issue-status-panel {
+    max-width: 100%;
+  }
+
+  .hero-market-center h1 {
+    font-size: 2rem;
+  }
+}

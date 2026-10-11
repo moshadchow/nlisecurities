@@ -80,15 +80,23 @@ function Home() {
           <HeroSlider />
         </div>
         <div className="container">
-          {/* Hero Text Centered */}
-          <div className="text-center mb-5">
-            <h1 className="display-3 fw-bold">
-              We Make Your <span className="text-primary">Invest</span> Better
-            </h1>
+          {/* Hero Market Row: DSE stats | heading | CSE stats */}
+          <div className="row align-items-center hero-market-row g-4">
+            <div className="col-12 col-lg-3 hero-market-side order-2 order-lg-1">
+              <IssueStatus title="DSE" indexData={indexData} />
+            </div>
+            <div className="col-12 col-lg-6 text-center hero-market-center order-1 order-lg-2 mb-5 mb-lg-0">
+              <h1 className="display-3 fw-bold">
+                We Make Your <span className="text-primary">Invest</span> Better
+              </h1>
 
-            <h5 className="border border-2 border-primary d-inline-block py-2 px-4 mt-3">
-              A leading capital market service provider Since 2013
-            </h5>
+              <h5 className="border border-2 border-primary d-inline-block py-2 px-4 mt-3">
+                A leading capital market service provider Since 2013
+              </h5>
+            </div>
+            <div className="col-12 col-lg-3 hero-market-side order-3">
+              <IssueStatus title="CSE" indexData={indexDataCSE} />
+            </div>
           </div>
 
           {/* Services Row */}
@@ -122,23 +130,7 @@ function Home() {
               </span>
             </h1>
           </div>
-          {/* ===== Market Issue Status HERE ===== */}
-          <div className="row justify-content-center mb-5">
-            {!error && indexData && indexDataCSE ? (
-              <div className="d-flex justify-content-center gap-5 flex-wrap issue-status-row">
-                <div className="issue-status-card">
-                  <IssueStatus title="DSE" indexData={indexData} />
-                </div>
-                <div className="issue-status-card">
-                  <IssueStatus title="CSE" indexData={indexDataCSE} />
-                </div>
-              </div>
-            ) : (
-              <div className="text-center p-4">
-                <div className="spinner-border text-primary"></div>
-              </div>
-            )}
-          </div>
+          {/* ===== Market charts below; issue stats now flank hero heading ===== */}
           <div className="market-pair-row">
 
             {/* Index Chart Row */}
