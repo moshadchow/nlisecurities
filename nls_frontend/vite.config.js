@@ -11,6 +11,7 @@ export default defineConfig({
     proxy: {
       '/about':            { target: DJANGO,  changeOrigin: true },
       '/slider':           { target: DJANGO,  changeOrigin: true },
+      '/splash':           { target: DJANGO,  changeOrigin: true },
       '/service':          { target: DJANGO,  changeOrigin: true },
       '/product':          { target: DJANGO,  changeOrigin: true },
       '/feature':          { target: DJANGO,  changeOrigin: true },

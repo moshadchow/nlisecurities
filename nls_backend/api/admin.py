@@ -7,6 +7,7 @@ from .models import Faqs,Clients
 from .models import BoardMembers,ManComs,Teams
 from .models import Teams,Offers,Category, DownloadFile, Research
 from .models import Events,Features,IPO_Offer,MarketNews,Branch
+from .models import SplashImage
 
 admin.site.register(Sliders)
 admin.site.register(Faqs)
@@ -92,3 +93,9 @@ class ResearchAdmin(admin.ModelAdmin):
     list_display = ("title", "description", "file", "published_at")
     list_filter = ("category", "published_at")
     search_fields = ("title",)
+
+@admin.register(SplashImage)
+class SplashImageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'image', 'link_url', 'is_active', 'created_at')
+    list_filter = ('is_active', 'created_at')
+    search_fields = ('title',)
