@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import About,AboutImage,Sliders,Services,Products,Features,Offers,BoardMembers,\
     Events,Clients,Faqs,PrivacyPolicy,ManComs,Teams,IPO_Offer,MarketNews,Branch,\
-    Category,Research
+    Category,Research,SplashImage
 
 
 from .serializers import AboutSerializer,AboutImageSerializer, ResearchFileSerializer,SlidersSerializer,\
@@ -9,7 +9,7 @@ from .serializers import AboutSerializer,AboutImageSerializer, ResearchFileSeria
     BoardMembersSerializer,EventsSerializer,ClientsSerializer,FaqsSerializer,\
     ContactSerializer, PrivacyPolicySerializer,ManComsSerializer,TeamsSerializer,\
     IPO_OfferSerializer,MarketNewsSerializer,BranchSerializer,\
-    CategorySerializer,ResearchFileSerializer
+    CategorySerializer,ResearchFileSerializer,SplashImageSerializer
 
 from django.db import connections
 from django.http import JsonResponse
@@ -49,6 +49,14 @@ def AboutImages(request,pk=None):
 def Sliders_view(request):
     data = Sliders.objects.all()
     serializedData = SlidersSerializer(data, many= True )
+    return Response(serializedData.data)
+
+@api_view(['GET'])
+def Splash_view(request):
+    data = SplashImage.objects.filter(is_active=True).order_by('-created_at').first()
+    if not data:
+        return Response([])
+    serializedData = SplashImageSerializer(data)
     return Response(serializedData.data)
 
 @api_view(['GET'])

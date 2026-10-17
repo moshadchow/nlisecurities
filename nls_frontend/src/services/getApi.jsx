@@ -47,6 +47,18 @@ export const getCarousal = async () => {
   }
 };
 
+export const getSplash = async () => {
+  try {
+    const response = await fetch(`${BASE}/splash/`, {
+      method: "GET",
+    });
+    return await response.json();
+  } catch (error) {
+    console.error("Fetch error:", error);
+    throw error;
+  }
+};
+
 export const getServices = async (id) => {
   var url;
   try {

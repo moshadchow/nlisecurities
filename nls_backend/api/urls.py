@@ -8,6 +8,7 @@ urlpatterns = [
     path('about_image/', views.AboutImages, name="get_about_img"),
     path('about_image/<int:pk>', views.AboutImages, name="get_about_img_single"),
     path('slider/', views.Sliders_view, name="get_slider"),
+    path('splash/', views.Splash_view, name="splash"),
     path('service/', views.Services_view, name="get_service_all"),
     path('service/<int:pk>', views.Services_view, name="get_service_single"),
     path('product/', views.Products_view, name="get_product_all"),

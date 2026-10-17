@@ -2,7 +2,8 @@ from rest_framework import serializers
 
 from .models import About,AboutImage,Sliders,Services,Products,Events,\
     Features,Offers,BoardMembers,Clients,Faqs,Contact,PrivacyPolicy,\
-    ManComs,Teams,IPO_Offer,MarketNews,Branch,Category,DownloadFile,Research
+    ManComs,Teams,IPO_Offer,MarketNews,Branch,Category,DownloadFile,Research,\
+    SplashImage
 
 class AboutSerializer(serializers.ModelSerializer):
     class Meta:
@@ -141,3 +142,8 @@ class ResearchGroupedSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     name = serializers.CharField()
     files = ResearchFileSerializer(many=True)
+
+class SplashImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SplashImage
+        fields = ['id','title','image','link_url','is_active']

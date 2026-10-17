@@ -10,6 +10,7 @@ import { fetchMarketInfo } from "../services/chartService";
 
 import IssueStatus from '../components/IssueStatus';
 import HeroSlider from '../components/HeroSlider';
+import SplashScreen from '../components/SplashScreen';
 import FaqSection from '../components/FaqSection';
 
 
@@ -72,6 +73,7 @@ function Home() {
   { error && <div className="alert alert-warning text-center">⚠️ {error}</div>; }
   return (
     <div>
+      <SplashScreen />
       {/* ===== HERO SECTION START ===== */}
       <div className="container-fluid hero-header bg-light">
 

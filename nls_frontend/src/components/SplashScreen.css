@@ -1,0 +1,49 @@
+.splash-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+}
+
+.splash-modal {
+  position: relative;
+  width: fit-content;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 48px);
+  padding: 16px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.splash-modal__image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 80px);
+  object-fit: contain;
+}
+
+.splash-modal__close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  color: #333;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
