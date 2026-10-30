@@ -1,13 +1,13 @@
 const MarketStatus = ({indexData,indexDataCSE})=>{
     return (
       <>
-        <div className="bg-dark text-light py-2 border-top border-secondary">
-          <div className="container d-flex flex-wrap justify-content-center text-center">
-            <span className="me-4 text-warning">
+        <div className="market-status-bar py-2">
+          <div className="container d-flex flex-wrap justify-content-center text-center gap-3">
+            <span className="text-muted">
               Tr: DSE: {indexData?.trade ?? "-"} | CSE:{" "}
               {indexDataCSE?.trade ?? "-"}
             </span>
-            <span className="me-4 text-info">
+            <span className="text-info">
               Vol: DSE: {indexData?.volume ?? "-"} | CSE:{" "}
               {indexDataCSE?.volume ?? "-"}
             </span>

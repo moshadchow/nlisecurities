@@ -100,11 +100,12 @@ const Service = () => {
                                   : "/placeholder-service.jpg"
                               }
                               alt={item.title || "Service image"}
-                              style={{
-                                height: "250px",
-                                objectFit: "cover",
-                                borderRadius: "8px",
-                              }}
+style={{
+  height: "250px",
+  objectFit: "contain",
+  objectPosition: "center center",
+  borderRadius: "8px",
+}}
                             />
                             <h3 className="mt-2 mb-0 text-white">
                               {item.title}

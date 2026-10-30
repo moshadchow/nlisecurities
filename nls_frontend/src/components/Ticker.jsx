@@ -1,6 +1,27 @@
 import { useEffect, useState } from "react";
 import { fetchTickerPrice } from "../services/chartService";
 
+const TickerItem = ({ item }) => (
+  <div className="ticker-item">
+    <strong>{item.inst}</strong>{" "}
+    {item.DSE ? (
+      <span className={item.DSE.arrow === "tkup" ? "text-up" : item.DSE.arrow === "tkdown" ? "text-down" : "text-neutral"}>
+        | DSE: {item.DSE.price} ({item.DSE.percent})
+      </span>
+    ) : (
+      " | DSE: —"
+    )}
+    {item.CSE ? (
+      <span className={item.CSE.arrow === "tkup" ? "text-up" : item.CSE.arrow === "tkdown" ? "text-down" : "text-neutral"}>
+        {" "}
+        | CSE: {item.CSE.price} ({item.CSE.percent})
+      </span>
+    ) : (
+      " | CSE: —"
+    )}
+  </div>
+);
+
 const Ticker = () => {
   const [mergedData, setMergedData] = useState([]);
   const [error, setError] = useState(null);
@@ -18,7 +39,6 @@ const Ticker = () => {
           throw new Error("Empty response from both sources");
         }
 
-        // Merge both datasets by instrument
         const combined = {};
         dseData.forEach((item) => {
           combined[item.inst] = { inst: item.inst, DSE: item };
@@ -37,60 +57,31 @@ const Ticker = () => {
 
     loadData();
 
-    // auto-refresh every 10 seconds
     interval = setInterval(loadData, 10000);
 
-    // cleanup on unmount
     return () => clearInterval(interval);
   }, []);
+
   { error && <div className="alert alert-warning text-center">⚠️ {error}</div>; }
   return (
-    <marquee behavior="scroll" direction="left" scrollamount="12">
-      {!error && mergedData.length > 0 ? (
-        mergedData.map((item, i) => (
-          <div key={i} style={{ display: "inline-block", marginRight: "25px", color: "#ffffff" }}>
-            <strong>{item.inst}</strong>{" "}
-            {item.DSE ? (
-              <span
-                style={{
-                  color:
-                    item.DSE.arrow === "tkup"
-                      ? "#39ff14"
-                      : item.DSE.arrow === "tkdown"
-                        ? "#ff6b6b"
-                        : "#ffd700",
-                }}
-              >
-                | DSE: {item.DSE.price} ({item.DSE.percent})
-              </span>
-            ) : (
-              " | DSE: —"
-            )}
-            {item.CSE ? (
-              <span
-                style={{
-                  color:
-                    item.CSE.arrow === "tkup"
-                      ? "#39ff14"
-                      : item.CSE.arrow === "tkdown"
-                        ? "#ff6b6b"
-                        : "#ffd700",
-                }}
-              >
-                {" "}
-                | CSE: {item.CSE.price} ({item.CSE.percent})
-              </span>
-            ) : (
-              " | CSE: —"
-            )}
+    <div className="ticker-wrap">
+      <div className="ticker-track">
+        {!error && mergedData.length > 0 ? (
+          <>
+            {mergedData.map((item, i) => (
+              <TickerItem key={i} item={item} />
+            ))}
+            {mergedData.map((item, i) => (
+              <TickerItem key={i + 1000} item={item} />
+            ))}
+          </>
+        ) : (
+          <div className="ticker-item text-center p-5">
+            <div className="spinner-border text-primary mb-3" role="status"></div>
           </div>
-        ))
-      ) : (
-        <div className="text-center p-5">
-          <div className="spinner-border text-primary mb-3" role="status"></div>
-        </div>
-      )}
-    </marquee>
+        )}
+      </div>
+    </div>
   );
 };
 

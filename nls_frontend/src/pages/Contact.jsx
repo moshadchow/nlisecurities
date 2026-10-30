@@ -13,9 +13,6 @@ function Contact(){
                 </div>
                 <div className="row justify-content-center">
                     <div className="col-lg-7">
-                        <p className="text-center mb-4">The contact form is currently inactive. Get a functional and working
-                            contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code
-                            and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
                         <div className="wow fadeIn" data-wow-delay="0.3s">
                             <form>
                                 <div className="row g-3">

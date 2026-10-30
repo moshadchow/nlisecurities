@@ -7,7 +7,7 @@ export const getPlainText = (htmlString) => {
 
 export const getAbout = async () => {
   try {
-    const response = await fetch(`${BASE}/about/`, {
+    const response = await fetch(`${BASE}/api/about/`, {
       method: "GET",
     });
     return await response.json();
@@ -21,9 +21,9 @@ export const getAboutImage = async (id) => {
  var url;
   try {
     if (id === null) {
-      url = `${BASE}/about_image/`;
+      url = `${BASE}/api/about_image/`;
     } else {
-      url = `${BASE}/about_image/${id}`;
+      url = `${BASE}/api/about_image/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -37,7 +37,7 @@ export const getAboutImage = async (id) => {
 
 export const getCarousal = async () => {
   try {
-    const response = await fetch(`${BASE}/slider/`, {
+    const response = await fetch(`${BASE}/api/slider/`, {
       method: "GET",
     });
     return await response.json();
@@ -49,7 +49,7 @@ export const getCarousal = async () => {
 
 export const getSplash = async () => {
   try {
-    const response = await fetch(`${BASE}/splash/`, {
+    const response = await fetch(`${BASE}/api/splash/`, {
       method: "GET",
     });
     return await response.json();
@@ -63,9 +63,9 @@ export const getServices = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = `${BASE}/service/`;
+      url = `${BASE}/api/service/`;
     } else {
-      url = `${BASE}/service/${id}`;
+      url = `${BASE}/api/service/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -79,7 +79,7 @@ export const getServices = async (id) => {
 
 export const getProducts = async (id) => {
   try {
-    const response = await fetch(`${BASE}/product/${id}`, {
+    const response = await fetch(`${BASE}/api/product/${id}`, {
       method: "GET",
     });
     return await response.json();
@@ -93,9 +93,9 @@ export const getFeatures = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = `${BASE}/feature/`;
+      url = `${BASE}/api/feature/`;
     } else {
-      url = `${BASE}/feature/${id}`;
+      url = `${BASE}/api/feature/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -111,9 +111,9 @@ export const getOffers = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = `${BASE}/offer/`;
+      url = `${BASE}/api/offer/`;
     } else {
-      url = `${BASE}/offer/${id}`;
+      url = `${BASE}/api/offer/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -129,9 +129,9 @@ export const getBoardMembers = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = `${BASE}/board_member/`;
+      url = `${BASE}/api/board_member/`;
     } else {
-      url = `${BASE}/board_member/${id}`;
+      url = `${BASE}/api/board_member/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -147,9 +147,9 @@ export const getManComs = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = `${BASE}/mancom/`;
+      url = `${BASE}/api/mancom/`;
     } else {
-      url = `${BASE}/mancom/${id}`;
+      url = `${BASE}/api/mancom/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -163,7 +163,7 @@ export const getManComs = async (id) => {
 
 export const getTeams = async () => {
   try {
-    const response = await fetch(`${BASE}/tech/`, {
+    const response = await fetch(`${BASE}/api/tech/`, {
       method: "GET",
     });
     return await response.json();
@@ -177,9 +177,9 @@ export const getEvents = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = `${BASE}/event/`;
+      url = `${BASE}/api/event/`;
     } else {
-      url = `${BASE}/event/${id}`;
+      url = `${BASE}/api/event/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -195,9 +195,9 @@ export const getMarketNews = async (id) => {
   var url;
   try {
     if (id === null) {
-      url = `${BASE}/market_news/`;
+      url = `${BASE}/api/market_news/`;
     } else {
-      url = `${BASE}/market_news/${id}`;
+      url = `${BASE}/api/market_news/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -211,7 +211,7 @@ export const getMarketNews = async (id) => {
 
 export const getClients = async () => {
   try {
-    const response = await fetch(`${BASE}/client/`, {
+    const response = await fetch(`${BASE}/api/client/`, {
       method: "GET",
     });
     return await response.json();
@@ -223,7 +223,7 @@ export const getClients = async () => {
 
 export const getFaqs = async () => {
   try {
-    const response = await fetch(`${BASE}/faq/`, {
+    const response = await fetch(`${BASE}/api/faq/`, {
       method: "GET",
     });
     return await response.json();
@@ -235,7 +235,7 @@ export const getFaqs = async () => {
 
 export const getPolicy = async () => {
   try {
-    const response = await fetch(`${BASE}/privacy-policy/`, {
+    const response = await fetch(`${BASE}/api/privacy-policy/`, {
       method: "GET",
     });
     return await response.json();
@@ -247,7 +247,7 @@ export const getPolicy = async () => {
 
 export const getIPO = async () => {
   try {
-    const response = await fetch(`${BASE}/ipo/`, {
+    const response = await fetch(`${BASE}/api/ipo/`, {
       method: "GET",
     });
     return await response.json();
@@ -261,9 +261,9 @@ export const getBranches = async (id) => {
  var url;
   try {
     if (id === null) {
-      url = `${BASE}/branch/`;
+      url = `${BASE}/api/branch/`;
     } else {
-      url = `${BASE}/branch/${id}`;
+      url = `${BASE}/api/branch/${id}`;
     }
     const response = await fetch(url, {
       method: "GET",
@@ -279,7 +279,7 @@ export const getBranches = async (id) => {
 export const fetchTopSharePrice = async (id)=> {
   try {
     // ✅ Make sure the path is correct relative to your public folder
-    const response = await fetch(`${BASE}/top_share_price_by/${id}`);
+    const response = await fetch(`${BASE}/api/top_share_price_by/${id}`);
 
     // ✅Check once and only once
     if (!response.ok) {
@@ -297,7 +297,7 @@ export const fetchTopSharePrice = async (id)=> {
 
 export const getFilesByCategories = async () => {
   try {
-    const response = await fetch(`${BASE}/categories/`, {
+    const response = await fetch(`${BASE}/api/categories/`, {
       method: "GET",
     });
     return await response.json();

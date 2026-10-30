@@ -14,7 +14,7 @@ function ResearchPage() {
     setLoading(true);
     setError(null);
 
-    fetch(`http://127.0.0.1:8000/research/${id}`)
+    fetch(`/api/research/${id}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch research data");
@@ -49,7 +49,7 @@ function ResearchPage() {
 
       <div className="container py-5">
         <div className="text-center mb-4">
-          <h1 className="h3 fw-bold">Research Reports</h1>
+          <h1 className="h3 fw-bold" style={{ color: 'var(--color-text)' }}>Research Reports</h1>
           <p className="text-muted mb-0">
             Latest market research and company reports — downloadable PDFs.
           </p>

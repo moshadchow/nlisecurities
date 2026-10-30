@@ -22,7 +22,7 @@ const FaqSection = () => {
 
   if (error) {
     return (
-      <div className="container-fluid py-5 bg-dark">
+      <div className="container-fluid py-5 bg-light">
         <div className="container">
           <div className="alert alert-warning text-center">
             Failed to load FAQs: {error}

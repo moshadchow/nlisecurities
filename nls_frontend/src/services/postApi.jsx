@@ -1,7 +1,7 @@
 const BASE = import.meta.env.VITE_API_BASE ?? '';
 export const post_contact = async (formData) =>{
     try{
-        const response = await fetch(`${BASE}/contact/`,{
+        const response = await fetch(`${BASE}/api/contact/`,{
             method:"POST",
             headers: {
                 "Content-Type": "application/json"

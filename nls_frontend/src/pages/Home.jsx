@@ -1,23 +1,26 @@
 import { Link } from "react-router-dom";
-import IndexChart, {
-  DSEIndex,
-  FetchTopShareBy,
-} from "../components/ChartContainer";
-import IndexChartCSE, { CSEIndex, FetchTopShareCSEBy } from "../components/ChartContainerCSE";
 import { useState, useEffect } from "react";
 import { getPlainText, getFeatures, getEvents } from "../services/getApi";
-import { fetchMarketInfo } from "../services/chartService";
+import { fetchMarketInfo, fetchMarketIndex, fetchTopSharePrice } from "../services/chartService";
 
-import IssueStatus from '../components/IssueStatus';
 import HeroSlider from '../components/HeroSlider';
 import SplashScreen from '../components/SplashScreen';
 import FaqSection from '../components/FaqSection';
+import FeatureCard from '../components/FeatureCard';
+import MarketBreadth from '../components/MarketBreadth';
+import IndexTable from '../components/IndexTable';
+import CSEMarketOverview from '../components/CSEMarketOverview';
+import MarketPerformanceTable from '../components/MarketPerformanceTable';
 
 
 function Home() {
   const [error, setError] = useState(null);
-  const [indexData, setIndexData] = useState(null);
-  const [indexDataCSE, setIndexDataCSE] = useState(null);
+  const [marketBreadthDSE, setMarketBreadthDSE] = useState(null);
+  const [marketBreadthCSE, setMarketBreadthCSE] = useState(null);
+  const [indexValues, setIndexValues] = useState(null);
+  const [indexValuesCSE, setIndexValuesCSE] = useState(null);
+  const [dseShareData, setDseShareData] = useState(null);
+  const [cseShareData, setCseShareData] = useState(null);
   const [features, setFeatures] = useState(null);
   const [events, setEvents] = useState(null);
 
@@ -40,22 +43,38 @@ function Home() {
         setEvents(response);
       } catch (err) {
         setError(err.message);
-        setEvents(null);
+        setFeatures(null);
       }
     };
 
     const loadMarketIndex = async () => {
       try {
-        const response = await fetchMarketInfo("DSE");
-        const res_cse = await fetchMarketInfo("CSE");
-        if (response.error) throw new Error(response.error);
-        if (res_cse.error) throw new Error(res_cse.error);
-        setIndexData(response);
-        setIndexDataCSE(res_cse);
+        const breadthDSE = await fetchMarketInfo("DSE");
+        const breadthCSE = await fetchMarketInfo("CSE");
+        const idxResponse = await fetchMarketIndex("DSE");
+        const idxResponseCSE = await fetchMarketIndex("CSE");
+        const dseShares = await fetchTopSharePrice("DSE");
+        const cseShares = await fetchTopSharePrice("CSE");
+        if (breadthDSE.error) throw new Error(breadthDSE.error);
+        if (breadthCSE.error) throw new Error(breadthCSE.error);
+        if (idxResponse.error) throw new Error(idxResponse.error);
+        if (idxResponseCSE.error) throw new Error(idxResponseCSE.error);
+        if (dseShares.error) throw new Error(dseShares.error);
+        if (cseShares.error) throw new Error(cseShares.error);
+        setMarketBreadthDSE(breadthDSE);
+        setMarketBreadthCSE(breadthCSE);
+        setIndexValues(idxResponse);
+        setIndexValuesCSE(idxResponseCSE);
+        setDseShareData(dseShares);
+        setCseShareData(cseShares);
       } catch (err) {
         setError(err.message);
-        setIndexData(null);
-        setIndexDataCSE(null);
+        setMarketBreadthDSE(null);
+        setMarketBreadthCSE(null);
+        setIndexValues(null);
+        setIndexValuesCSE(null);
+        setDseShareData(null);
+        setCseShareData(null);
       }
     };
 
@@ -76,52 +95,39 @@ function Home() {
       <SplashScreen />
       {/* ===== HERO SECTION START ===== */}
       <div className="container-fluid hero-header bg-light">
-
-        {/* Large Slider First */}
         <div className="container-fluid">
           <HeroSlider />
         </div>
-        <div className="container">
-          {/* Hero Market Row: DSE stats | heading | CSE stats */}
-          <div className="row align-items-center hero-market-row g-4">
-            <div className="col-12 col-lg-3 hero-market-side order-2 order-lg-1">
-              <IssueStatus title="DSE" indexData={indexData} />
+        <div className="container py-3">
+          <div className="row g-3 hero-market-dashboard-row align-items-start">
+            {/* Group 1: DSE Market Breadth */}
+            <div className="col-12 col-lg-3 col-xl-2">
+              <MarketBreadth
+                title="Dhaka Stock Exchange (DSE)"
+                data={marketBreadthDSE}
+              />
             </div>
-            <div className="col-12 col-lg-6 text-center hero-market-center order-1 order-lg-2 mb-5 mb-lg-0">
-              <h1 className="display-3 fw-bold">
-                We Make Your <span className="text-primary">Invest</span> Better
-              </h1>
-
-              <h5 className="border border-2 border-primary d-inline-block py-2 px-4 mt-3">
-                A leading capital market service provider Since 2013
-              </h5>
+            {/* Group 2: DSE Index Table */}
+            <div className="col-12 col-lg-4 col-xl-5">
+              <IndexTable
+                title="DSE Indices"
+                indices={["DSEX", "DS30", "DSES"]}
+                indexData={indexValues}
+              />
             </div>
-            <div className="col-12 col-lg-3 hero-market-side order-3">
-              <IssueStatus title="CSE" indexData={indexDataCSE} />
-            </div>
-          </div>
-
-          {/* Services Row */}
-          <div className="row g-5 text-center">
-            <div className="col-md-6 col-lg-3">
-              <h5>Trade Execution (Buy & Sell Orders)</h5>
-            </div>
-            <div className="col-md-6 col-lg-3">
-              <h5>Client Account Management & Custody Services</h5>
-            </div>
-            <div className="col-md-6 col-lg-3">
-              <h5>Research & Advisory Services</h5>
-            </div>
-            <div className="col-md-6 col-lg-3">
-              <h5>Compliance, Settlement & Reporting</h5>
+            {/* Group 3: CSE Market Breadth + Index Table */}
+            <div className="col-12 col-lg-5 col-xl-5">
+              <CSEMarketOverview
+                breadthData={marketBreadthCSE}
+                indexData={indexValuesCSE}
+              />
             </div>
           </div>
         </div>
-
       </div>
       {/* ===== HERO END ===== */}
       {/* Hero End */}
-      {/* Chart Start */}
+      {/* Chart Start - Market Performance Tables */}
       <div className="container-fluid py-5 bg-dark">
         <div className="container">
           <div className="text-center wow fadeIn" data-wow-delay="0.1s">
@@ -132,70 +138,91 @@ function Home() {
               </span>
             </h1>
           </div>
-          {/* ===== Market charts below; issue stats now flank hero heading ===== */}
-          <div className="market-pair-row">
 
-            {/* Index Chart Row */}
-            <div className="row g-5">
-              <div className="col-lg-6">
-                <div className="dse-index-chart">
-                  <IndexChart />
-                </div>
+          {/* DSE Market Performance Tables */}
+          <div className="market-performance-section mb-5">
+            <h3 className="text-primary mb-4">Dhaka Stock Exchange (DSE)</h3>
+            <div className="row g-4">
+              <div className="col-12 col-lg-6">
+                <MarketPerformanceTable
+                  title="DSE Gainers"
+                  data={dseShareData}
+                  category="gainer"
+                />
               </div>
-              <div className="col-lg-6">
-                <div className="cse-index-chart">
-                  <IndexChartCSE />
-                </div>
+              <div className="col-12 col-lg-6">
+                <MarketPerformanceTable
+                  title="DSE Losers"
+                  data={dseShareData}
+                  category="loser"
+                />
+              </div>
+              <div className="col-12 col-lg-6">
+                <MarketPerformanceTable
+                  title="DSE Highest Value"
+                  data={dseShareData}
+                  category="value"
+                />
+              </div>
+              <div className="col-12 col-lg-6">
+                <MarketPerformanceTable
+                  title="DSE Highest Volume"
+                  data={dseShareData}
+                  category="volume"
+                />
               </div>
             </div>
+          </div>
 
-            {/* Index Summary Row */}
-            <div className="row g-5">
-              <div className="col-lg-6">
-                <div className="dse-index">
-                  <DSEIndex />
-                </div>
+          {/* CSE Market Performance Tables */}
+          <div className="market-performance-section">
+            <h3 className="text-primary mb-4">Chittagong Stock Exchange (CSE)</h3>
+            <div className="row g-4">
+              <div className="col-12 col-lg-6">
+                <MarketPerformanceTable
+                  title="CSE Gainers"
+                  data={cseShareData}
+                  category="gainer"
+                />
               </div>
-              <div className="col-lg-6">
-                <div className="cse-index">
-                  <CSEIndex />
-                </div>
+              <div className="col-12 col-lg-6">
+                <MarketPerformanceTable
+                  title="CSE Losers"
+                  data={cseShareData}
+                  category="loser"
+                />
+              </div>
+              <div className="col-12 col-lg-6">
+                <MarketPerformanceTable
+                  title="CSE Highest Value"
+                  data={cseShareData}
+                  category="value"
+                />
+              </div>
+              <div className="col-12 col-lg-6">
+                <MarketPerformanceTable
+                  title="CSE Highest Volume"
+                  data={cseShareData}
+                  category="volume"
+                />
               </div>
             </div>
-
-            {/* Top Share Row */}
-            <div className="row g-5">
-              <div className="col-lg-6">
-                <div className="dse-top-share">
-                  <FetchTopShareBy />
-                </div>
-              </div>
-              <div className="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                <div className="cse-top-share">
-                  <FetchTopShareCSEBy />
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
       {/* Chart End */}
       {/* Feature Start */}
-      <div className="container-fluid py-5 bg-dark">
+      <div className="container-fluid py-5 feature-section">
         <div className="container py-5">
-          <div className="text-center wow fadeIn" data-wow-delay="0.1s">
-            <h1 className="mb-5 text-primary bg-light">
+          <div className="text-center mb-5">
+            <h2 className="feature-section-title">
               Why Investor{" "}
-              <span className="text-uppercase px-2">
-                Choose Us
-              </span>
-            </h1>
+              <span className="text-teal">Choose Us</span>
+            </h2>
           </div>
-          <div className="row g-5 align-items-center text-center">
+          <div className="row g-4 feature-card-grid">
             {features &&
               features.map((item, index) => {
-                const delay = (0.1 + index * 0.2).toFixed(1); // 0.1s, 0.3s, 0.5s, etc.
                 const icons = [
                   "fa-calendar-alt",
                   "fa-tasks",
@@ -205,24 +232,20 @@ function Home() {
                   "fa-check",
                 ];
                 return (
-                  <div
-                    key={index}
-                    className="col-md-6 col-lg-4 wow fadeIn text-center"
-                    data-wow-delay={`${delay}s`}
-                  >
-                    <i
-                      className={`fa ${icons[index]} fa-4x text-primary mb-3`}
-                    ></i>
-                    <h4 className="text-white">{item.title}</h4>
-                    <p className="mb-0 text-light">{getPlainText(item.description)}</p>
+                  <div key={item.id ?? index} className="col-12 col-md-6 col-lg-4">
+                    <FeatureCard
+                      title={item.title}
+                      description={item.description}
+                      iconClass={icons[index]}
+                    />
                   </div>
                 );
               })}
           </div>
         </div>
       </div>
-      {/* Feature End *}
-     {/*Events Start */}
+      {/* Feature End */}
+      {/*Events Start */}
       <div className="container-fluid bg-primary newsletter p-0">
         <div className="container py-5">
           <h1 className="text-center mb-5 fw-bold">Our Recent Events</h1>
