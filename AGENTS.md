@@ -20,17 +20,21 @@ FastAPI tests (`fastapi/`): `pytest tests/` — parser/repository/failure tests 
 
 ## Routing — the trickiest part
 
-Frontend uses **relative URLs** (`VITE_API_BASE` / `VITE_FASTAPI_BASE`, both default `''`). Path→backend mapping lives in `nls_frontend/vite.config.js` (dev proxy): content paths (`/slider`, `/service`, `/market_info`, `/ticker_price`, …) → Django :8000; live-scrape paths (`/ipo_offer`, `/dse_news`, `/cse_news`, `/minutes_index_cse`) → FastAPI :8080.
+Frontend uses **relative URLs** (`VITE_API_BASE` / `VITE_FASTAPI_BASE`, both default `''`).
 
+**Dev proxy** lives in `nls_frontend/vite.config.js`: `/api` → Django :8000 (with path rewrite stripping `/api`), `/media` → Django :8000; FastAPI live-scrape paths (`/ipo_offer`, `/dse_news`, `/cse_news`, `/minutes_index_cse`) → FastAPI :8080.
+
+- All frontend API calls now prepend `/api/` (e.g. `fetch(\`/api/service/${id}\`)`, `fetch(\`/api/research/${id}\`)`). Do NOT call Django endpoints at root without `/api`.
 - New endpoint → add a proxy rule in `vite.config.js` **and** a matching Nginx rule on the server, or it 404s in one environment.
-- `nls_backend/api/urls.py` mounts at root (`''`, no `/api/` prefix). `nlisecurities.conf` in this checkout is gitignored/local-only and currently only proxies `/api/`, `/admin/`, `/ckeditor5/`, `/static/`, `/media/` — it does **not** cover the content endpoints, so verify the live server config before trusting it.
+- `nls_backend/api/urls.py` mounts at root (`''`, no `/api/` prefix). `nlisecurities.conf` is gitignored/local-only and currently only proxies `/api/`, `/admin/`, `/ckeditor5/`, `/static/`, `/media/` — it does **not** cover content endpoints, so verify live server config before trusting it.
 - Read path for market data is Django (`market_info/`, `minutes_index/`, `market_index/`, `ticker_price/`, `sector_wise_inst/` read the tables FastAPI scrapes into). FastAPI's same-named live endpoints are scrape triggers, not what the frontend reads.
 
 ## Conventions
 
 - New Django endpoint: function-based `@api_view` in `nls_backend/api/views.py` + route in `api/urls.py` (root-level path). Rich-text model fields use `CKEditor5Field`.
 - FastAPI `lifespan` starts `periodic_runner()` via `asyncio.create_task()` on a 30s loop — **run with `--workers 1`** or scrapes duplicate. Tables are auto-created by `create_database_and_table()` on startup; Django migrations only cover Django-managed tables.
-- Known bug: `nls_frontend/src/services/chartService.jsx` `fetchIPO`/`fetchDSENews`/`fetchCSENews`/`fetchSectorWiseSymbol` use double-quoted `"${FASTAPI_BASE}/..."` (never interpolates) — fix to backticks when touching that file.
+- **Known bug:** `nls_frontend/src/services/chartService.jsx` `fetchIPO`/`fetchDSENews`/`fetchCSENews`/`fetchSectorWiseSymbol` use double-quoted `"${FASTAPI_BASE}/..."` (never interpolates) — fix to backticks when touching that file.
+- `ContentPage` (`nls_frontend/src/components/ContentPage.jsx`) + `CKEditorViewer` render HTML from CKEditor via `dangerouslySetInnerHTML`. `ckeditor-styles.css` controls rendering — always dark-theme. `Service.jsx` card images use `object-fit: contain` (not `cover`) to avoid cropping embedded text.
 
 ## Production
 
