@@ -34,22 +34,15 @@ function Header() {
   return (
     <>
       {/* ===== TICKER START ===== */}
-      <div
-        className="container-fluid text-light py-1"
-        style={{ backgroundColor: "#003d7a" }}
-      >
+      <div className="header-ticker">
         <Ticker />
       </div>
       {/* ===== TICKER END ===== */}
 
       {/* ===== TOP BAR START ===== */}
-      <div
-        className="container-fluid text-light py-2"
-        style={{ backgroundColor: "#003d7a" }}
-      >
+      <div className="header-top-bar">
         <div className="container">
           <div className="row align-items-center">
-            {/* Address & Phone */}
             <div className="col-lg-6 text-center text-lg-start small">
               <i className="bi bi-geo-alt me-2 fs-4"></i>
               79 Motijheel C/A, Dhaka-1000
@@ -58,13 +51,12 @@ function Header() {
               +88 09678771266
             </div>
 
-            {/* Social + Trade Button */}
             <div className="col-lg-6 text-center text-lg-end mt-2 mt-lg-0">
               <a
                 href="https://bo-registration.xfltrade.com/signup?broker=nls"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-warning btn-sm me-2"
+                className="btn btn-outline btn-sm me-2"
               >
                 Open a BO Account
               </a>
@@ -73,7 +65,7 @@ function Header() {
                 href="https://www.facebook.com/nlisecurities"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-light me-3 fs-4"
+                className="text-muted me-3 fs-4"
               >
                 <i className="bi bi-facebook"></i>
               </a>
@@ -82,7 +74,7 @@ function Header() {
                 href="https://www.linkedin.com/company/nli-securities-limited/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-light me-3 fs-4"
+                className="text-muted me-3 fs-4"
               >
                 <i className="bi bi-linkedin"></i>
               </a>
@@ -90,7 +82,7 @@ function Header() {
               <Link
                 to="https://nls.xfltrade.com"
                 target="_blank"
-                className="btn btn-danger btn-sm ms-2"
+                className="btn btn-primary btn-sm ms-2"
               >
                 Trade Now
               </Link>
@@ -101,14 +93,14 @@ function Header() {
       {/* ===== TOP BAR END ===== */}
 
       {/* ===== NAVBAR START ===== */}
-      <div className="container-fluid sticky-top bg-light shadow-sm">
+      <div className="header-nav">
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light py-3">
             <Link to="/" className="navbar-brand me-5">
               <img
-                src="http://127.0.0.1:8000/media/nls_logo.png"
+                src="/media/nls_logo.png"
                 alt="NLI Securities"
-                style={{ height: "60px", objectFit: "contain" }}
+                className="header-logo"
               />
             </Link>
 
@@ -139,7 +131,6 @@ function Header() {
                   Branch
                 </Link>
 
-                {/* Research Dropdown */}
                 <div className="nav-item dropdown">
                   <Link
                     to="#!"
@@ -196,7 +187,7 @@ function Header() {
                     </Link>
                   </div>
                 </div>
-                {/* Market Dropdown */}
+
                 <div className="nav-item dropdown">
                   <Link
                     to="#!"
@@ -214,7 +205,7 @@ function Header() {
                     </Link>
                   </div>
                 </div>
-                {/* Information Dropdown */}
+
                 <div className="nav-item dropdown">
                   <Link
                     to="#!"
@@ -242,12 +233,11 @@ function Header() {
                 <Link to="/contact" className="nav-link site-nav-link">
                   Contact
                 </Link>
-                {/* Client Portal */}
                 <a
                   href="https://clientportal.nlisecurities.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-outline-primary btn-sm ms-4"
+                  className="btn btn-outline btn-sm ms-4 focus-ring"
                 >
                   <i className="bi bi-person-circle me-1"></i>
                   Investor Portal

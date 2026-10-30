@@ -154,7 +154,7 @@
      }
 
      # ── Django REST API endpoints (all raw paths) ─────────────────
-     location ~ ^/(about|about_image|slider|service|product|feature|offer|board_member|mancom|tech|event|market_news|
+      location ~ ^/(about|about_image|slider|splash|service|product|feature|offer|board_member|mancom|tech|event|market_news|
  client|faq|privacy-policy|ipo|branch|top_share_price_by|categories|contact|minutes_index|market_info|market_index|ti
  cker_price|sector_wise_inst|event_dtl|service_dtl|research)/ {
          proxy_pass http://192.168.101.238:8000;

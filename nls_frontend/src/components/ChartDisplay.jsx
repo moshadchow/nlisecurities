@@ -50,7 +50,7 @@ const AreaChartDisplay = ({ type, data }) => {
   const { stroke, fill } = CHART_COLORS[type] || CHART_COLORS.DSEX;
 
   return (
-    <div style={{ width: "100%", height: 350 }}>
+    <div style={{ width: "100%", height: 320 }}>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={data} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" />

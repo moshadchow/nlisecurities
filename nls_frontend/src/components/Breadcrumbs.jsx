@@ -7,7 +7,7 @@ function Breadcrumbs(props) {
                 <div className="container">
                     {/* Page Heading - centered and prominent */}
                     <div className="text-center mb-4 animated slideInLeft">
-                        <h1 className="display-2 fw-bold text-blue mb-2">{props.page}</h1>
+                        <h1 className="display-2 fw-bold mb-2">{props.page}</h1>
                     </div>
 
                     {/* Breadcrumb Navigation - centered below heading */}
@@ -16,14 +16,14 @@ function Breadcrumbs(props) {
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb mb-0 bg-transparent">
                                     <li className="breadcrumb-item">
-                                        <Link className="text-blue text-decoration-none" to="/">Home</Link>
+                                        <Link className="text-decoration-none" to="/">Home</Link>
                                     </li>
                                     {props.folder && (
                                         <li className="breadcrumb-item">
-                                            <Link className="text-blue text-decoration-none" to="#">{props.folder}</Link>
+                                            <Link className="text-decoration-none" to="#">{props.folder}</Link>
                                         </li>
                                     )}
-                                    <li className="breadcrumb-item text-blue-50 active" aria-current="page">
+                                    <li className="breadcrumb-item active" aria-current="page">
                                         {props.page}
                                     </li>
                                 </ol>

@@ -29,7 +29,8 @@ return (
     <Breadcrumbs folder="Pages" page="ForthComming IPO" />
     <div className="container-fluid py-5">
       <div className="container">
-        <table className="table table-success table-striped">
+        <div className="ipo-table-wrap">
+          <table className="table">
           <thead>
             <tr>
               <th>Sl#</th>
@@ -70,6 +71,7 @@ return (
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   </>

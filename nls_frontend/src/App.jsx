@@ -1,6 +1,5 @@
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
+import './index.css'
+import './App.css'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Service from './pages/Service'
@@ -24,9 +23,10 @@ import ResearchPage from "./pages/ResearchPage";
 
 function App() {
   return (
-    <>    
-    <Header/>    
-    <Routes>
+    <div className="page-wrap">
+      <Header/>
+      <main>
+        <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/service' element={<Service/>}/>
@@ -44,9 +44,10 @@ function App() {
       <Route path='/event_dtl/:id' element={<EventDetails/>}/>
       <Route path="/research/:id" element={<ResearchPage />} />
       <Route path='/test' element={<SimpleAreaChart/>}/>
-    </Routes>
-    <Footer/>
-    </>
+        </Routes>
+      </main>
+      <Footer/>
+    </div>
   )
 }
 

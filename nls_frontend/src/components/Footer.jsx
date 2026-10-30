@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 function Footer() {
   return (
     <>
-      {/* Footer Start */}
-      <div className="container-fluid bg-dark text-white-50 footer pt-5">
+      <div className="site-footer">
         <div className="container py-5">
           <div className="row g-5">
             <div
@@ -13,9 +12,9 @@ function Footer() {
             >
               <Link to="/" className="d-inline-block mb-3">
                 <img
-                  src="http://127.0.0.1:8000/media/nls_logo.png"
+                  src="/media/nls_logo.png"
                   alt="NLI Securities"
-                  style={{ height: "70px", objectFit: "contain" }}
+                  className="footer-logo"
                 />
               </Link>
               <p className="mb-0">
@@ -43,31 +42,31 @@ function Footer() {
               </p>
               <div className="d-flex pt-2">
                 <Link
-                  className="btn btn-outline-primary btn-square border-2 me-2"
+                  className="btn btn-outline btn-square border-2 me-2"
                   href="#!"
                 >
                   <i className="fab fa-twitter"></i>
                 </Link>
                 <Link
-                  className="btn btn-outline-primary btn-square border-2 me-2"
+                  className="btn btn-outline btn-square border-2 me-2"
                   href="#!"
                 >
                   <i className="fab fa-facebook-f"></i>
                 </Link>
                 <Link
-                  className="btn btn-outline-primary btn-square border-2 me-2"
+                  className="btn btn-outline btn-square border-2 me-2"
                   href="#!"
                 >
                   <i className="fab fa-youtube"></i>
                 </Link>
                 <Link
-                  className="btn btn-outline-primary btn-square border-2 me-2"
+                  className="btn btn-outline btn-square border-2 me-2"
                   href="#!"
                 >
                   <i className="fab fa-instagram"></i>
                 </Link>
                 <Link
-                  className="btn btn-outline-primary btn-square border-2 me-2"
+                  className="btn btn-outline btn-square border-2 me-2"
                   href="#!"
                 >
                   <i className="fab fa-linkedin-in"></i>
@@ -138,19 +137,10 @@ function Footer() {
                   Xpert Fintech Ltd.
                 </Link>
               </div>
-              <div className="col-md-6 text-center text-md-end">
-                <div className="footer-menu">
-                  <Link to="#!">Home</Link>
-                  <Link to="#!">Cookies</Link>
-                  <Link to="#!">Help</Link>
-                  <Link to="#!">FAQs</Link>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
-      {/* Footer End */}
     </>
   );
 }
